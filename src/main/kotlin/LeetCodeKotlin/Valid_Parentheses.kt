@@ -1,21 +1,33 @@
 package LeetCodeKotlin
 
+import java.util.*
+import kotlin.collections.ArrayDeque
+
 class Solution {
     fun isValid(s: String): Boolean {
-        for(i in 0.. s.length){
-            if (i < s.lastIndex){
-                if (s[0].equals(s[i]) && s[0] == s[s.lastIndex]){
-                    return true
-                }
+        if (s.length % 2 != 0) return false
+
+        val stack = Stack<Char>()
+
+        for (char in s) {
+            when (char) {
+                '(', '[', '{' -> stack.push(char)
+                ')' -> if (stack.isEmpty() || stack.pop() != '(') return false
+                ']' -> if (stack.isEmpty() || stack.pop() != '[') return false
+                '}' -> if (stack.isEmpty() || stack.pop() != '{') return false
+                else -> return false
             }
         }
-        return false
+
+        return stack.isEmpty()
     }
 }
+
 fun main() {
     val solution = Solution()
-    var valid = solution.isValid("()")
-    println( valid)
-
-
+    println(solution.isValid("()"))
+    println(solution.isValid("()[]{}"))
+    println(solution.isValid("(]"))
+    println(solution.isValid("([)]"))
+    println(solution.isValid("{[]}"))
 }
