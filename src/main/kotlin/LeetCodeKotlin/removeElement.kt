@@ -12,5 +12,5 @@ fun removeElement(nums: IntArray, int: Int): Int {
 }
 
 fun main(){
-    println(removeElement(intArrayOf(1,1,2,3),3))
+    println(removeElement(intArrayOf(1,1,2,3),1))
 }
