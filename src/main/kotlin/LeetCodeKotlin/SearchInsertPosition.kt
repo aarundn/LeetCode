@@ -1,26 +1,32 @@
 package LeetCodeKotlin
 
 fun searchInsert(nums: IntArray, target: Int): Int {
-    var i = 0
-    if (nums.size <= 2 && target > nums[0]){
-            i = 1
-    } else {
-        for (j in 0 until nums.size - 1) {
+    nums.forEachIndexed { index, value ->
+        if (value == target) {
+            return index
+        } else if (value > target) {
 
-            if (target > nums[j] && target < nums[j + 1]) {
-                i = j + 1
-            } else if (target == nums[j]) {
-                i = j
-            } else if (target > nums[j + 1]) {
-                i = nums.size
-            }
+            return index
         }
     }
+    return nums.size
+}
 
+fun searchInsert1(nums: IntArray, target: Int): Int {
 
-    return i
+        for (j in nums.indices) {
+
+            if (target < nums[j]){
+                return j
+            } else if (target == nums[j]) {
+                return j
+        }
+
+        }
+    return nums.size
 }
 
 fun main() {
-    println(searchInsert(intArrayOf(1,3), 4))
+    println(searchInsert1(intArrayOf(1,3), 0))
+    println(searchInsert(intArrayOf(1,3), 0))
 }
