@@ -24,7 +24,7 @@ fun main() {
 
     val student = arrayOf<String>("bob", "haroun2", "haroun4")
     val prefix = longestCommonPrefix(student)
-    println(prefix)
+    println(prefixes)
 
 
 }
